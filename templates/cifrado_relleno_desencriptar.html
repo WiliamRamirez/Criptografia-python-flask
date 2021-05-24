@@ -1,0 +1,70 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+    <div class="container mt-4">
+        <div class="text-center">
+            <h1>
+                Cifrado por relleno de una sola vez Desencriptar
+            </h1>
+        </div>
+        <div class="row g-5 mt-4 ">
+            <div class="col-md-7 col-lg-4 order-md-last">
+                <h4 class="d-flex justify-content-between align-items-center mb-3">
+                    <span class="text-primary">Resultado: </span>
+                </h4>
+                <ul class="list-group mb-3">
+                    <li class="list-group-item d-flex justify-content-between lh-sm">
+                        <div>
+                            <h6 class="my-0">
+                                Mensaje
+                            </h6>
+                        </div>
+
+                    </li>
+
+                    <li class="list-group-item d-flex justify-content-between bg-light">
+                        <div class="text-success m-3">
+                            <h5 class="my-0">
+                                {% with messages = get_flashed_messages(category_filter=["msg"]) %}
+                                    {% if messages %}
+                                        {% for message in messages %}
+                                            {{ message }}
+                                        {% endfor %}
+                                    {% endif %}
+                                {% endwith %}
+                            </h5>
+                        </div>
+                    </li>
+
+                </ul>
+
+            </div>
+
+            <div class="col-md-5 col-lg-8">
+                <form class="needs-validation" action="/desencriptar_relleno" method="post">
+                    <div class="row g-3">
+
+                        <div class="col-12">
+                            <label for="mensajeBits" class="form-label">Mensaje en Bits </label>
+                            <input name="mensajeBits" type="text" class="form-control" id="mensajeBits"
+                                   placeholder="Ingrese el mensaje en bits:">
+                        </div>
+
+                    </div>
+                    <div class="row g-3">
+
+                        <div class="col-12">
+                            <label for="rellenoBits" class="form-label">Relleno en Bits </label>
+                            <input name="rellenoBits" type="text" class="form-control" id="rellenoBits"
+                                   placeholder="Ingrese el relleno en bits:">
+                        </div>
+
+                    </div>
+
+                    <button class="w-100 btn btn-primary btn-lg mt-4" type="submit">Desencriptar</button>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}
